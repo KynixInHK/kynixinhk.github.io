@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="陳叔叔的部落格">
+    <meta name="author" content="Kynix Chan">
+    
+    <title>
+        
+            [Vue 3] 第二課 Vue組件精通課 |
+        
+        陳叔叔的部落格
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/favicon.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-TW","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#5352ed","title":"陳叔叔的部落格","author":"Kynix Chan","avatar":"/images/avatar.png","logo":null,"favicon":"/images/favicon.svg"},"menu":{"歸檔":"/archives","標籤":"/tags","類別":"/categories","關於我":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"追尋所愛的生活和世界。","hitokoto":false},"social_contact":{"enable":true,"links":{"github":null,"x-twitter":"https://twitter.com/kynixtw","instagram":"https://www.instagram.com/kynixtw/","facebook":"https://www.facebook.com/profile.php?id=100084690546631","email":"kynix@kynix.tw"}},"scroll":{"progress_bar":true,"percent":true,"hide_header":true},"home":{"category":true,"tag":true,"announcement":null},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":true,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"since":2023,"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":false,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":["/css/style.css"]},"root":"","source_data":{},"version":"4.1.0"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"復製代碼","copied":"已復製","fold":"折疊代碼塊","folded":"已折疊"}
+    KEEP.language_copy_copyright = {"copy":"復製版權信息","copied":"已復製","title":"原文標題","author":"原文作者","link":"原文連結"}
+  </script>
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+            <a class="site-name border-box" href="/">
+               陳叔叔的部落格
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                
+                                歸檔
+                            </a>
+                        </li>
+                    
+                        
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                
+                                標籤
+                            </a>
+                        </li>
+                    
+                        
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                
+                                類別
+                            </a>
+                        </li>
+                    
+                        
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                
+                                關於我
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives"
+                    >歸檔</a>
+                </li>
+            
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags"
+                    >標籤</a>
+                </li>
+            
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories"
+                    >類別</a>
+                </li>
+            
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about"
+                    >關於我</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        [Vue 3] 第二課 Vue組件精通課
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.png">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Kynix Chan</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2024-01-23 11:14:11</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Tue Jan 23 2024 10:18:41 GMT+0000">2024-01-23 18:18:41</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E6%8A%80%E8%A1%93%E6%96%87%E7%AB%A0/">技術文章</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Vue/">Vue</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <h2 id="Vue組件基礎"><a href="#Vue組件基礎" class="headerlink" title="Vue組件基礎"></a>Vue組件基礎</h2><p>在Vue中一直有一個論述，叫做：“Everything is components”（一切皆組件）。可見組件在Vue開發中舉足輕重的地位。那麼組件究竟是什麼呢？</p>
+<p>我們可以把組件理解爲：<strong>同時含有&lt;template&gt;&lt;&#x2F;template&gt;部分、&lt;style&gt;&lt;&#x2F;style&gt;部分、&lt;script&gt;&lt;&#x2F;script&gt;部分，實現從元素、樣式到邏輯處理的一站式完全功能體。</strong> 通常，這個功能體被定義在一個<code>.vue</code> 檔案中。也就是說，我們可以認爲，<strong>一個.vue檔案就是一個組件。</strong></p>
+<p>例如，一個標準的頁面可以被分爲header（頭部）、main（主要部分）、sidebar（側邊欄）、footer（尾部）。其中每一個部分，都有自己的元素（HTML）、樣式（Style）和邏輯（JavaScript），所以一個頁面可以就可以被分爲若干組件。同時，這個頁面在Vue中也是一個.vue檔案，故這個頁面也可以看作是一個大組件。因此，在學習的前期，我們不妨將組件分爲<strong>頁面組件</strong> 和<strong>功能組件</strong> 。頁面組件是Mount在路由中，顯示一整個頁面的組件，而功能組件則是放到頁面組件中，是頁面的某一部分。</p>
+<h3 id="定義組件"><a href="#定義組件" class="headerlink" title="定義組件"></a>定義組件</h3><p>我們明白了組件的概念，自然明白該怎樣去定義組件。只需要新建一個.vue文件，包含這三個部分，一個組件就被定義好了。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- ButtonConter.vue --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="使用組件"><a href="#使用組件" class="headerlink" title="使用組件"></a>使用組件</h3><p>一個組件被定義了之後，必須被放到頁面上，才能夠顯示出來。也就是將某個組件放到更大的組件中去。因此，我們需要在更大的組件中去引入並使用這個組件。</p>
+<p>首先，我們要在組件的<code>&lt;script&gt;&lt;/script&gt;</code>部分引入該組件：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">import</span> <span class="title class_">ButtonCounter</span> <span class="keyword">from</span> <span class="string">&#x27;./ButtonCounter.vue&#x27;</span></span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然後，我們可以在組件的<code>&lt;template&gt;&lt;/template&gt;</code>部分使用該組件：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ButtonCounter</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>這樣，這個組件就會被添加到更大的組件中，可以在父組件的相應位置顯示了。</p>
+<h2 id="組件Props"><a href="#組件Props" class="headerlink" title="組件Props"></a>組件Props</h2><p>組件的一個重要的特性就是將一個功能的集合體抽離出來。抽離出來的東西具有可復現性。</p>
+<p>例如，我們有一個組件，會在很多個頁面中都用到，但是每個頁面中，該組件展示的信息不一樣。那我們該怎麼做呢？難道要定義很多個組件嗎？當然不是。因爲該組件的基本結構都是確定的，只是其中微小的部分有差異。那這種情況下，我們就需要父組件告訴子組件，到底要展示什麼內容，也就是說，需要父組件向子組件中傳送props（屬性）。</p>
+<p>要實現這個過程，需要執行以下步驟：</p>
+<ol>
+<li>在子組件中定義需要傳入的props</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">import</span> &#123; defineProps &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> props = <span class="title function_">defineProps</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">nihao</span>: &#123; <span class="comment">// nihao是需要傳入的props名字</span></span></span><br><span class="line"><span class="language-javascript">            <span class="attr">type</span>: <span class="title class_">String</span>, <span class="comment">// props的類型</span></span></span><br><span class="line"><span class="language-javascript">            <span class="attr">default</span>: <span class="string">&quot;&quot;</span> <span class="comment">// props預設的值</span></span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 渲染到template，直接寫props的名字即可 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span> &#123;&#123; nihao &#125;&#125; <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在父組件中傳入這個props的值</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Component</span> <span class="attr">nihao</span>=<span class="string">&quot;你好&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Component</span> <span class="attr">nihao</span>=<span class="string">&quot;Hello&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Component</span> <span class="attr">nihao</span>=<span class="string">&quot;こんにちは&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>渲染結果如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>你好<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>こんにちは<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面的例子實現了從父組件向子組件傳送一個String類型的props名叫nihao，我們可以看到，當向子組件傳送不同的props值，子組件渲染到頁面上的內容也不同。</p>
+<p>如果我們想要將父組件中的一個JS變數作爲props傳入子組件，我們也可以使用模板語法來完成：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Component</span> <span class="attr">:nihao</span>=<span class="string">&quot;variable&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>這樣子，當veriable變數發生改變的時候，傳入子組件的props也相應發生改變。如果你想要將數字或者Boolean等類型傳入子組件，就必須使用模板語法纔可以。因爲預設的靜態傳入方式只能向裏面傳送字串。</p>
+<h2 id="事件處理"><a href="#事件處理" class="headerlink" title="事件處理"></a>事件處理</h2><p>如果說父組件向子組件交流是透過傳送props實現的，那麼子組件如果有內容需要報告給父組件，又該怎麼做呢？是透過一個叫做事件處理的程式來進行的。</p>
+<p>完成該過程有兩種辦法，第一種是比較簡單的方法，只能在子組件中某些元素觸發JS事件之後，向父組件傳送一些固定的內容。實現過程如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;$emit(&#x27;event&#x27;)&quot;</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用<code>$emit()</code>來向父組件傳送資料。event是事件的名字。</p>
+<p>在父組件中，可以透過事件監聽來處理子組件傳入的資料：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Component</span> @<span class="attr">event</span>=<span class="string">&quot;func&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">func</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hello, world.&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上表示，一旦監聽到了子組件的event事件，就執行func函式。</p>
+<p>我們也可以在子組件向上傳送事件的過程中向上傳送資料：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;$emit(&#x27;event&#x27;, 1)&quot;</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>event是事件名稱，1是要向上傳入的內容。該內容將作爲父組件中func函式的引數傳入。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Component</span> @<span class="attr">event</span>=<span class="string">&quot;func&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">func</span> = (<span class="params">e</span>) =&gt; &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(e)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>除了這種簡單的方式，我們還可以將emit寫在JS部分，這樣我們就不必拘泥於按鈕的點擊、輸入框的輸入等等，可以在任何想拋出事件的時候，就將事件拋給父組件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定義emits</span></span><br><span class="line"><span class="keyword">const</span> emit_event = <span class="title function_">defineEmits</span>([<span class="string">&quot;event&quot;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 拋出事件</span></span><br><span class="line"><span class="title function_">onMounted</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">emit_event</span>(<span class="string">&quot;event&quot;</span>, <span class="number">1</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="組件v-model"><a href="#組件v-model" class="headerlink" title="組件v-model"></a>組件v-model</h2><p>我們上一節課講過，v-model用於模板和資料的雙向綁定。我們也可以在開發組件的時候，爲我們的組件添加上這一屬性。</p>
+<p>當我們爲組件添加了這一屬性後，父組件綁定到子組件的這一變數就可以直接在子組件中使用了，就像是在子組件中定義的一樣。在子組件中改變該變數的值，父組件中也會相應改變。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Child.vue</span></span><br><span class="line"><span class="keyword">const</span> model = <span class="title function_">defineModel</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">update_model</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    model ++</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>父組件中可以通過v-model綁定一個JS變數：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Father.vue --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Child</span> <span class="attr">v-model</span>=<span class="string">&quot;val&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>這樣，我們就透過v-model，將父組件中val這個變數綁定到了子組件中model這個變數。也可以說，val和model是同一個變數，只不過在父組件和子組件中分別叫val和model而已。</p>
+<p>在子組件中執行的update_model()函式，在改變子組件model變數的同時，由於model變數和父組件val變數互相綁定，故父組件中val變數也同步改變。反之亦然。</p>
+<p>關於組件v-model的其餘內容，包括組件多個v-model的實現，請讀者自行查閱Vue官方文檔。模式基本相同，在此不再贅述。</p>
+<h2 id="插槽（Slot）"><a href="#插槽（Slot）" class="headerlink" title="插槽（Slot）"></a>插槽（Slot）</h2><p>還記得我們遙遠遙遠的第一節課上，我和各位說了一件什麼事情嗎？</p>
+<p>單葉標籤和雙葉標籤。</p>
+<p>我曾經在課上說過，這兩個詞語是我自己創造出來的，但很應景。所謂的雙葉標籤，兩個標籤葉之間是可以裹挾一些東西的，從而可以渲染到頁面上。而單葉標籤由於只有一個標籤葉，所以沒有辦法在其中夾東西。</p>
+<p>不知道大家發現了沒有，在之前我們所定義的所有組件，在父組件中使用的時候，幾乎都是單葉組件，儘管組件也可以被寫成雙葉形式：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Component</span>&gt;</span><span class="tag">&lt;/<span class="name">Component</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>但是在這種情況下，裏面夾任何的東西都是不會被顯示和渲染的。</p>
+<p>要實現在裏面放東西，並且還能夠渲染到子組件的相應位置，我們就需要用到“插槽”這個東西。在子組件需要渲染的地方加上一個插槽，就可以引導着雙葉之間的內容渲染到相應的部位了。例如，我們在子組件中可以這樣定義：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--Child.vue--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;nihao&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">slot</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然後在父組件中就可以在雙葉之間添加內容了：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--Father.vue--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Child</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>你好！<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Child</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>&lt;slot&gt;&lt;/slot&gt;</code>關鍵字即爲插槽的標誌，代表着父組件雙葉之間的內容將被替換到這裏。上述內容渲染之後是這樣的：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;nihao&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>你好！<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到，雙葉之間的內容被替換到了子組件中<code>&lt;slot&gt;&lt;/slot&gt;</code>的位置。</p>
+<p>至於多插槽的配置，還請讀者自行查閱Vue官方文檔，文檔的內容很好理解。</p>
+<h2 id="重要的內置組件"><a href="#重要的內置組件" class="headerlink" title="重要的內置組件"></a>重要的內置組件</h2><p>在Vue框架中，有幾個組件是Vue官方幫我們寫好的，我們可以直接使用去實現相應的功能。下面筆者將介紹其中兩個使用比較廣泛的組件。</p>
+<h3 id="Transition"><a href="#Transition" class="headerlink" title="Transition"></a>Transition</h3><p><code>&lt;Transition&gt;</code> 會在一個元素或元件進入和離開 DOM 時套用動畫。</p>
+<p>進入或離開可以由以下的條件之一觸發：</p>
+<ul>
+<li>由 v-if 觸發的切換</li>
+<li>由 v-show 觸發的切換</li>
+<li>由特殊元素 <code>&lt;component&gt;</code> 切換的動態元件</li>
+<li>改變特殊的 key 屬性</li>
+</ul>
+<p>其中，前兩項是我們比較常用的，第三項將在下一個內置組件中詳細介紹，最後一項不是很常見。</p>
+<p>下面是官方文檔中提供給我們的用法案例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;show = !show&quot;</span>&gt;</span>Toggle<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Transition</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">&quot;show&quot;</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Transition</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 下面我们会解释这些 class 是做什么的 */</span></span><br><span class="line"><span class="selector-class">.v-enter-active</span>,</span><br><span class="line"><span class="selector-class">.v-leave-active</span> &#123;</span><br><span class="line">  <span class="attribute">transition</span>: opacity <span class="number">0.5s</span> ease;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.v-enter-from</span>,</span><br><span class="line"><span class="selector-class">.v-leave-to</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面我們來解釋一下這些CSS動畫效果的實現。<br>總共有 6 個應用於進入與離開過渡效果的 CSS class。</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/images/vue3-2/vue-transition.png"
+                        alt="vue-transition"
+                 ></p>
+<p>上面這張圖片很好地展示了這個過程。因此，我們就可以在CSS中，將這些狀態或過程的CSS樣式都定義出來，這樣Transition組件就會幫我們實現這個過渡的過程。</p>
+<p>這是官方文檔的解釋：</p>
+<ol>
+<li><p><code>v-enter-from</code>：進入動畫的起始狀態。 在元素插入之前添加，在元素插入完成後的下一幀移除。</p>
+</li>
+<li><p><code>v-enter-active</code>：進入動畫的生效狀態。 應用於整個進入動畫階段。 在元素插入之前添加，在過渡或動畫完成之後移除。 這個 class 可以用來定義進入動畫的持續時間、延遲與速度曲線類型。</p>
+</li>
+<li><p><code>v-enter-to</code>：進入動畫的結束狀態。 在元素插入完成後的下一幀被添加 (也就是 v-enter-from 被移除的同時)，在過渡或動畫完成之後移除。</p>
+</li>
+<li><p><code>v-leave-from</code>：離開動畫的起始狀態。 在離開過渡效果被觸發時立即添加，在一幀後被移除。</p>
+</li>
+<li><p><code>v-leave-active</code>：離開動畫的生效狀態。 應用於整個離開動畫階段。 在離開過渡效果被觸發時立即添加，在過渡或動畫完成之後移除。 這個 class 可以用來定義離開動畫的持續時間、延遲與速度曲線類型。</p>
+</li>
+<li><p><code>v-leave-to</code>：離開動畫的結束狀態。 在一個離開動畫被觸發後的下一幀被添加 (也就是 v-leave-from 被移除的同時)，在過渡或動畫完成之後移除。</p>
+</li>
+</ol>
+<h4 id="爲過渡效果命名"><a href="#爲過渡效果命名" class="headerlink" title="爲過渡效果命名"></a>爲過渡效果命名</h4><p>上面我們套用的動畫，包括我們寫的CSS，是沒有命名的。如果我們有好幾個需要套用不同動畫的元素，這顯然是不夠的。因此，我們可以把每一個動畫效果命名，然後選擇每一個需要套用動畫的元素使用哪一個動畫效果。</p>
+<p>例如，我們需要名叫“fade”的一套動畫，我們首先要在CSS中，把前面的效果class改成：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.fade-enter-active</span>,</span><br><span class="line"><span class="selector-class">.fade-leave-active</span> &#123;</span><br><span class="line">  <span class="attribute">transition</span>: opacity <span class="number">0.5s</span> ease;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.fade-enter-from</span>,</span><br><span class="line"><span class="selector-class">.fade-leave-to</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，僅僅只是把默認的“v”換成了需要命名的名字而已。</p>
+<p>然後，我們可以在<code>&lt;Transition&gt;</code>組件的name屬性去套用這個命名：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Transition</span> <span class="attr">name</span>=<span class="string">&quot;fade&quot;</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">Transition</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="KeepAlive"><a href="#KeepAlive" class="headerlink" title="KeepAlive"></a>KeepAlive</h3><p>要明白這個組件的用處，我們首先要引入動態組件的概念。有些情況下，我們會需要在兩個組件之間互相切換，比如標籤頁。</p>
+<p>在這種情況下，我們可以使用<code>&lt;component&gt;</code>標籤來代替不同的組件：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">component</span> <span class="attr">:is</span>=<span class="string">&quot;activeComponent&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中，activeComponent是一個JS變數，其值是已經引入的子組件的名字或者組件實例。</p>
+<p>預設情況下，一個元件實例在被替換掉後會被銷毀。 這會導致它遺失其中所有已變更的狀態－當這個元件再一次被顯示時，會建立一個只帶有初始狀態的新實例。</p>
+<p>在切換時建立新的元件實例通常是有意義的，但有些時候，我們的確想要元件能在被「切走」的時候保留它們的狀態。 要解決這個問題，我們可以用 <code>&lt;KeepAlive&gt;</code> 內建元件將這些動態元件包裝起來：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">KeepAlive</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">component</span> <span class="attr">:is</span>=<span class="string">&quot;activeComponent&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">KeepAlive</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="組件庫"><a href="#組件庫" class="headerlink" title="組件庫"></a>組件庫</h2><p>組件是功能的集合體，而許許多多這樣的組件放到一起，就形成了組件庫。Vue 3有大量的第三方組件庫，包含了許許多多可以使用的組件。這些組件庫極大拓展了Vue 3的能力。</p>
+<p>國內目前比較流行的組件庫是<a class="link"   target="_blank" rel="noopener" href="https://element-plus.org/zh-CN/" >Element Plus<i class="fas fa-external-link-alt"></i></a>。</p>
+
+                </div>
+                
+                        
+<div class="post-copyright-info-container border-box">
+    <div class="copyright-info-content border-box">
+        <div class="copyright-info-top border-box">
+            <div class="copyright-post-title border-box text-ellipsis">
+                [Vue 3] 第二課 Vue組件精通課
+            </div>
+
+            <div class="copyright-post-link border-box text-ellipsis">
+                2024/01/23/vue3-2/
+            </div>
+        </div>
+
+        <div class="copyright-info-bottom border-box">
+            <div class="copyright-post-author bottom-item">
+                <div class="type">
+                    作者
+                </div>
+                <div class="content">Kynix Chan</div>
+            </div>
+
+            <div class="post-time bottom-item">
+                <div class="type">
+                    發布于
+                </div>
+                <div class="content">2024-01-23 11:14</div>
+            </div>
+
+
+            <div class="post-license bottom-item">
+                <div class="type">
+                    許可
+                </div>
+                <div class="content tooltip" data-tooltip-content="CC BY-NC-SA 4.0">
+                    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant" target="_blank">
+                        
+                            <i class="fa-brands fa-creative-commons"></i>
+                            <i class="fa-brands fa-creative-commons-by"></i>
+                            <i class="fa-brands fa-creative-commons-nc"></i>
+                            <i class="fa-brands fa-creative-commons-sa"></i>
+                        
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <i class="copyright-bg fa-solid fa-copyright"></i>
+    </div>
+    <div class="copy-copyright-info flex-center tooltip" data-tooltip-content="復製版權信息" data-tooltip-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Vue/">Vue</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2024/01/24/vue3-3/"
+                                   title="[Vue 3] 第三課 Vue Router和Vue Axios"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">[Vue 3] 第三課 Vue Router和Vue Axios</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2024/01/21/vue3-1/"
+                                   title="[Vue 3] 第一課 認識前端框架和Vue 3"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">[Vue 3] 第一課 認識前端框架和Vue 3</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue%E7%B5%84%E4%BB%B6%E5%9F%BA%E7%A4%8E"><span class="nav-text">Vue組件基礎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E7%BE%A9%E7%B5%84%E4%BB%B6"><span class="nav-text">定義組件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%B5%84%E4%BB%B6"><span class="nav-text">使用組件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%84%E4%BB%B6Props"><span class="nav-text">組件Props</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E8%99%95%E7%90%86"><span class="nav-text">事件處理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%84%E4%BB%B6v-model"><span class="nav-text">組件v-model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E6%A7%BD%EF%BC%88Slot%EF%BC%89"><span class="nav-text">插槽（Slot）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E7%9A%84%E5%85%A7%E7%BD%AE%E7%B5%84%E4%BB%B6"><span class="nav-text">重要的內置組件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Transition"><span class="nav-text">Transition</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%88%B2%E9%81%8E%E6%B8%A1%E6%95%88%E6%9E%9C%E5%91%BD%E5%90%8D"><span class="nav-text">爲過渡效果命名</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KeepAlive"><span class="nav-text">KeepAlive</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%84%E4%BB%B6%E5%BA%AB"><span class="nav-text">組件庫</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2023</span>&nbsp;-&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Kynix Chan</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;框架&nbsp;&&nbsp;主題&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜尋..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue%E7%B5%84%E4%BB%B6%E5%9F%BA%E7%A4%8E"><span class="nav-text">Vue組件基礎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E7%BE%A9%E7%B5%84%E4%BB%B6"><span class="nav-text">定義組件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%B5%84%E4%BB%B6"><span class="nav-text">使用組件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%84%E4%BB%B6Props"><span class="nav-text">組件Props</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E8%99%95%E7%90%86"><span class="nav-text">事件處理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%84%E4%BB%B6v-model"><span class="nav-text">組件v-model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E6%A7%BD%EF%BC%88Slot%EF%BC%89"><span class="nav-text">插槽（Slot）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E7%9A%84%E5%85%A7%E7%BD%AE%E7%B5%84%E4%BB%B6"><span class="nav-text">重要的內置組件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Transition"><span class="nav-text">Transition</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%88%B2%E9%81%8E%E6%B8%A1%E6%95%88%E6%9E%9C%E5%91%BD%E5%90%8D"><span class="nav-text">爲過渡效果命名</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KeepAlive"><span class="nav-text">KeepAlive</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%84%E4%BB%B6%E5%BA%AB"><span class="nav-text">組件庫</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="pjax">
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+            
+<script src="/js/post/copyright-info.js"></script>
+
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

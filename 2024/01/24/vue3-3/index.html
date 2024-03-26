@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="陳叔叔的部落格">
+    <meta name="author" content="Kynix Chan">
+    
+    <title>
+        
+            [Vue 3] 第三課 Vue Router和Vue Axios |
+        
+        陳叔叔的部落格
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/favicon.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-TW","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#5352ed","title":"陳叔叔的部落格","author":"Kynix Chan","avatar":"/images/avatar.png","logo":null,"favicon":"/images/favicon.svg"},"menu":{"歸檔":"/archives","標籤":"/tags","類別":"/categories","關於我":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"追尋所愛的生活和世界。","hitokoto":false},"social_contact":{"enable":true,"links":{"github":null,"x-twitter":"https://twitter.com/kynixtw","instagram":"https://www.instagram.com/kynixtw/","facebook":"https://www.facebook.com/profile.php?id=100084690546631","email":"kynix@kynix.tw"}},"scroll":{"progress_bar":true,"percent":true,"hide_header":true},"home":{"category":true,"tag":true,"announcement":null},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":true,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"since":2023,"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":false,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":["/css/style.css"]},"root":"","source_data":{},"version":"4.1.0"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"復製代碼","copied":"已復製","fold":"折疊代碼塊","folded":"已折疊"}
+    KEEP.language_copy_copyright = {"copy":"復製版權信息","copied":"已復製","title":"原文標題","author":"原文作者","link":"原文連結"}
+  </script>
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+            <a class="site-name border-box" href="/">
+               陳叔叔的部落格
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                
+                                歸檔
+                            </a>
+                        </li>
+                    
+                        
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                
+                                標籤
+                            </a>
+                        </li>
+                    
+                        
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                
+                                類別
+                            </a>
+                        </li>
+                    
+                        
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                
+                                關於我
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives"
+                    >歸檔</a>
+                </li>
+            
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags"
+                    >標籤</a>
+                </li>
+            
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories"
+                    >類別</a>
+                </li>
+            
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about"
+                    >關於我</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        [Vue 3] 第三課 Vue Router和Vue Axios
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.png">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Kynix Chan</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2024-01-24 11:23:58</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Wed Jan 24 2024 10:02:48 GMT+0000">2024-01-24 18:02:48</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E6%8A%80%E8%A1%93%E6%96%87%E7%AB%A0/">技術文章</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Vue/">Vue</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <h2 id="開始之前"><a href="#開始之前" class="headerlink" title="開始之前"></a>開始之前</h2><p>其實這兩個東西互相之間並沒有什麼關聯，一個是Vue 3官方推薦的路由管理工具，一個是Vue 3中使用人數最多的HTTP請求發送工具。 為什麼筆者要將這兩個東西放在一起去講呢？ 有兩個原因，第一個是因為之前兩節課，已經把Vue的基礎使用、Vue組件這兩個Vue中最重要的概念完成了，因此剩下一些瑣碎的東西，大約就是這兩個很重要了。 第二是因為這兩個東西都屬於Vue生態（Ecosystem）中很重要的環節，筆者希望讀者能夠藉此機會熟悉Vue 3強大的可拓展性。</p>
+<h2 id="Vue-Router"><a href="#Vue-Router" class="headerlink" title="Vue Router"></a>Vue Router</h2><p>在講到這個東西之前，讀者需要先瞭解路由（Router）這個概念。在傳統的 Web 開發過程中，當需要實作多個站內頁面時，需要寫很多 HTML 頁面，然後透過 <code>&lt;a&gt;</code> 標籤來實現互相跳躍。</p>
+<p>在現今化模式下的前端開發，像 Vue ，可以輕鬆實現只用一個 HTML 檔案，卻能夠完成多個站內頁面渲染、跳轉的功能，這就是路由。</p>
+<p>放到Vue中，路由的實現，是透過掛載不同的頁面組件來實現的。</p>
+<p>要在Vue中實現路由的功能，我們要使用到<a class="link"   target="_blank" rel="noopener" href="https://router.vuejs.org/zh/" >Vue Router<i class="fas fa-external-link-alt"></i></a>。</p>
+<h3 id="Vue-Router的安裝和基本使用"><a href="#Vue-Router的安裝和基本使用" class="headerlink" title="Vue Router的安裝和基本使用"></a>Vue Router的安裝和基本使用</h3><ol>
+<li>使用npm安裝Vue Router</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-router@4</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在專案的根目錄下創建兩個目錄：router和views</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir router views</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在router下新建router.js檔案：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch router/router.js</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>在views下新建測試組件並填入一些內容：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch views/test.vue</span><br><span class="line">echo &quot;&lt;script&gt;\n&lt;/script&gt;\n&lt;template&gt;\n&lt;div&gt;Hello, world.&lt;/div&gt;\n&lt;/template&gt;\n&lt;style&gt;\n&lt;/style&gt;&quot; &gt;&gt; views/test.vue</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>在router.js中填入以下內容：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createRouter, createWebHistory &#125; <span class="keyword">from</span> <span class="string">&#x27;vue-router&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定義路由集合</span></span><br><span class="line"><span class="comment">// name：路由的名稱，path：路由的路徑，component：該路由對應的頁面組件</span></span><br><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">&quot;test&quot;</span>, <span class="attr">path</span>: <span class="string">&quot;/test&quot;</span>, <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;../views/test.vue&#x27;</span>) &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定義路由轉換器</span></span><br><span class="line"><span class="comment">// history：web history，routes：標準寫法是routes: routes，但如果上面定義的路由集合的名字爲routes，就可以簡寫爲routes</span></span><br><span class="line"><span class="keyword">const</span> router = <span class="title function_">createRouter</span>(&#123;</span><br><span class="line">    <span class="attr">history</span>: <span class="title function_">createWebHistory</span>(),</span><br><span class="line">    routes</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 導出路由轉換器</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>在主配置main.js中引入路由轉換器</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">&#x27;./router/router.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">createApp</span>(<span class="title class_">App</span>)</span><br><span class="line">app.<span class="title function_">use</span>(router)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>在App.vue根組件中添加<code>&lt;router-view&gt;&lt;/router-view&gt;</code>標籤。</li>
+</ol>
+<p>完成了以上步驟，當我們打開瀏覽器，進入<a class="link"   target="_blank" rel="noopener" href="http://localhost:5173/test" >http://localhost:5173/test<i class="fas fa-external-link-alt"></i></a> ，就可以看到顯示Hello, world.訊息的路由頁面了。</p>
+<h3 id="路由嵌套"><a href="#路由嵌套" class="headerlink" title="路由嵌套"></a>路由嵌套</h3><p>從上面的配置中，我們不難看出，路由和頁面組件是一一對應的關係。在任一Vue App中，都有一個基本路由：path爲<code>/</code>對應<code>App.vue</code>。因此，<code>/</code>也被稱爲根路由，<code>App.vue</code>也被稱爲根組件。</p>
+<p>而我們新增的路由<code>/test</code>對應的頁面組件是<code>test.vue</code>。但是，上面的步驟中我們也看到，要想將新路由在頁面上顯示出來，仍然需要在根組件上添加<code>&lt;router-view&gt;&lt;/router-view&gt;</code>這個標籤。這裏就涉及到一個不是很好理解的知識點——路由嵌套。</p>
+<p>上面的例子中，我們可以將<code>/test</code>中的斜線看作是（事實上也就是）根路由<code>/</code>，也就是說，<code>/test</code>路由實際上是“掛載”在根路由上，對應着的，其組件<code>test.vue</code>也要相應放到根組件中才能顯示。這就是路由嵌套，即子路由必須要掛載到父路由中才能夠藉由父路由的顯示而顯示。</p>
+<p>接下來我們繼續思考一個問題：我們剛剛只不過是在App.vue中添加了一個&lt;router-view&gt;&lt;&#x2F;router-view&gt;標籤，用以代表App.vue這個組件對應的路由（也就是根路由）下掛載的子路由對應的組件。那麼，是否是只要開啓了路由，App.vue中就只能放一個&lt;router-view&gt;&lt;&#x2F;router-view&gt;標籤呢？答案顯然是否定的。讓我們爲App.vue加一點東西：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>這是原本顯示在根組件中的內容哦！<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>顯示效果如下：<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/images/vue3-3/vue_3-3.1.png"
+                        alt="vue_3-3.1"
+                 ></p>
+<p>我們可以看到，原本在App.vue中的內容也正確地被顯示了。因此，我們得出了一個令人驚悚的結論——似乎，頁面組件也可以像功能組件那樣，作爲上一級頁面的一部分來顯示，而不是全部。</p>
+<p>恭喜你，如果你理解到這一層，那麼代表着你會對路由和頁面組件有了一個比較深入的認識，而不僅僅侷限於一個路由對應一個頁面。好，那麼現在我們總結出來的結論是：<strong>一個路由對應一個頁面組件，而不是一個路由對應一個頁面。</strong></p>
+<p>也就是說，如果根路由<code>/</code>下除了掛載<code>/test</code>路由，還掛載了其他的什麼別的路由，這些路由也都將作爲根組件的一部分去顯示，當我們在這些路由之間切換的時候，事實上，是根組件中&lt;router-view&gt;&lt;&#x2F;router-view&gt;標籤所代表的頁面組件之間的切換。</p>
+<p>OK，理解了這個概念，我們就可以繼續進行下去了。接下來我們講的是：多層嵌套路由。</p>
+<p>既然普通的頁面組件能夠放到根組件裏面，那麼頁面組件中是不是也可以繼續放其他的頁面組件呢？當然可以了！畢竟每個子頁面都是父頁面的一部分嘛。所以理論上來講，路由可以一直嵌套下去。比如這一段：<code>/test/demo/0nlineTek/web/...</code>。那麼，多層嵌套路由該怎麼實現呢？很簡單，我們首先要在定義的routes集合裏面爲需要多層嵌套的路由添加children屬性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// router.js</span></span><br><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">    &#123; </span><br><span class="line">        <span class="attr">name</span>: <span class="string">&quot;test&quot;</span>, </span><br><span class="line">        <span class="attr">path</span>: <span class="string">&quot;/test&quot;</span>, </span><br><span class="line">        <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;../views/test.vue&#x27;</span>), </span><br><span class="line">        <span class="attr">children</span>: [</span><br><span class="line">            &#123; <span class="attr">name</span>: <span class="string">&quot;demo&quot;</span>, <span class="attr">path</span>: <span class="string">&quot;/test/demo&quot;</span>, <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;../views/demo.vue&#x27;</span>) &#125;</span><br><span class="line">        ] </span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>然後在test.vue的對應位置再加上一個&lt;router-view&gt;&lt;router-view&gt;標籤就好了。</p>
+<h3 id="動態路由匹配"><a href="#動態路由匹配" class="headerlink" title="動態路由匹配"></a>動態路由匹配</h3><p>很多時候，我們需要將給定匹配模式的路由對應到同一個組件。 例如，我們可能有一個 User 組件，它應該對所有使用者進行渲染，但使用者 ID 不同。 在 Vue Router 中，我們可以在路徑中使用一個動態欄位來實現，我們稱之為<code>路徑參數</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// router.js</span></span><br><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">  <span class="comment">// 動態欄位以冒號開始</span></span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;/users/:id&#x27;</span>, <span class="attr">component</span>: <span class="title class_">User</span> &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>那麼現在，<code>/users/xiaoming</code>，<code>/users/xiaogang</code>這類的路由均會映射到User組件。</p>
+<p>我們在User組件內部，也可以使用<code>$route.params.id</code>拿到欄位id的值。</p>
+<h3 id="編程式導航"><a href="#編程式導航" class="headerlink" title="編程式導航"></a>編程式導航</h3><p>如果我們想要在一個路由下實現跳轉到另一個路由，當然可以使用&lt;a&gt;標籤，但更推薦的方式是使用編程式導航：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useRouter &#125; <span class="keyword">from</span> <span class="string">&#x27;vue-router&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = <span class="title function_">useRouter</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">navigateTo</span> = (<span class="params">route</span>) =&gt; &#123;</span><br><span class="line">    router.<span class="title function_">push</span>(route)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中， <code>useRouter().push()</code>方法可以從當前路由跳轉到其餘路由。其引數可以是路由的name或者路由的path。</p>
+<p>如果你想要在跳轉到另一個路由的時候，向另一個路由傳送引數，可以使用params或query引數：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 當使用params引數時，不能配合path，必須使用name，params引數不會顯示到url中，但重新整理頁面後params引數失效。(經過測試，此方法暫不可用，似乎是Vue Router的bug)</span></span><br><span class="line">router.<span class="title function_">push</span>(&#123;<span class="attr">name</span>: <span class="string">&#x27;User&#x27;</span>, <span class="attr">params</span>: &#123; <span class="attr">username</span>: <span class="string">&quot;xiaoming&quot;</span> &#125;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 當使用query引數時，可以配合path或name，query引數一定會顯示到url中，但重新整理頁面後query引數會得到保留。</span></span><br><span class="line">router.<span class="title function_">push</span>(&#123;<span class="attr">path</span>: <span class="string">&#x27;/user&#x27;</span>, <span class="attr">query</span>: &#123; <span class="attr">username</span>: <span class="string">&quot;xiaoming&quot;</span> &#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>終點路由用<code>useRoute().query</code>接收。</p>
+<h3 id="導航守衛"><a href="#導航守衛" class="headerlink" title="導航守衛"></a>導航守衛</h3><p>在瞭解這個知識之前，我們首先要給自己定下一個規矩：好好設計路由結構，路由結構切勿過於複雜。能用功能組件解決的問題，就儘量別用路由。否則，下面要講的東西以後用起來，一定會要了你的命。</p>
+<p>我們通常都有這樣的需求：只有用戶完成了登入動作，纔能進入某些路由顯示頁面，否則就重定向到登入頁面。</p>
+<p>這個時候，我們就需要一把“鎖”來守衛住我們的路由，只有符合條件，纔將路由放行，其餘情況下統統攔下。Vue Router的導航守衛功能應運而生。</p>
+<p>簡單來講，所謂的導航守衛，就是在用戶不論通過什麼方式（不管是頁面內導航，還是直接在位址欄中輸入url）進入路由前，加裝一個檢查站攔截用戶的流量，將現有條件和預設條件進行比對，滿足預設條件則放行，反之則不放行。</p>
+<p>我們一般使用的導航守衛都是全局前置守衛：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">router.<span class="title function_">beforeEach</span>(<span class="keyword">async</span> (to, <span class="keyword">from</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (</span><br><span class="line">    <span class="comment">// 检查用户是否已登录</span></span><br><span class="line">    !isAuthenticated &amp;&amp;</span><br><span class="line">    <span class="comment">// ❗️ 避免无限重定向</span></span><br><span class="line">    to.<span class="property">name</span> !== <span class="string">&#x27;Login&#x27;</span></span><br><span class="line">  ) &#123;</span><br><span class="line">    <span class="comment">// 将用户重定向到登录页面</span></span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="attr">name</span>: <span class="string">&#x27;Login&#x27;</span> &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>接下來筆者解釋一下回呼函式中兩個引數的意義：</p>
+<ol>
+<li><code>to</code>：表示即將要跳轉到的路由物件。</li>
+<li><code>from</code>：表示從哪個路由物件跳轉的。</li>
+</ol>
+<p>如果有讀者去閱讀Vue Router的相關文檔，請忽略<code>next</code>引數，這個引數官方並不推薦使用，也不一定會在哪一版本中移除。</p>
+<p>Vue Router相關內容就講到這裏。其餘內容請自行參閱Vue Router官方文檔。</p>
+<h2 id="Axios"><a href="#Axios" class="headerlink" title="Axios"></a>Axios</h2><p>在原生JS中，我們使用JQuery包中提供的<code>$ajax()</code>函式來向後端發送請求。那麼在Vue 3中，我們使用和它非常相像的一個工具，名叫axios。</p>
+<ol>
+<li>安裝axios</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save axios</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>使用axios發送請求：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">axios</span>(&#123;</span><br><span class="line">  <span class="attr">url</span>: <span class="string">&quot;https://api.example.com/api&quot;</span>,</span><br><span class="line">  <span class="attr">method</span>: <span class="string">&quot;POST&quot;</span>,</span><br><span class="line">  <span class="attr">data</span>: &#123;</span><br><span class="line">    <span class="attr">need</span>: <span class="string">&quot;yes&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(err)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+                </div>
+                
+                        
+<div class="post-copyright-info-container border-box">
+    <div class="copyright-info-content border-box">
+        <div class="copyright-info-top border-box">
+            <div class="copyright-post-title border-box text-ellipsis">
+                [Vue 3] 第三課 Vue Router和Vue Axios
+            </div>
+
+            <div class="copyright-post-link border-box text-ellipsis">
+                2024/01/24/vue3-3/
+            </div>
+        </div>
+
+        <div class="copyright-info-bottom border-box">
+            <div class="copyright-post-author bottom-item">
+                <div class="type">
+                    作者
+                </div>
+                <div class="content">Kynix Chan</div>
+            </div>
+
+            <div class="post-time bottom-item">
+                <div class="type">
+                    發布于
+                </div>
+                <div class="content">2024-01-24 11:23</div>
+            </div>
+
+
+            <div class="post-license bottom-item">
+                <div class="type">
+                    許可
+                </div>
+                <div class="content tooltip" data-tooltip-content="CC BY-NC-SA 4.0">
+                    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant" target="_blank">
+                        
+                            <i class="fa-brands fa-creative-commons"></i>
+                            <i class="fa-brands fa-creative-commons-by"></i>
+                            <i class="fa-brands fa-creative-commons-nc"></i>
+                            <i class="fa-brands fa-creative-commons-sa"></i>
+                        
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <i class="copyright-bg fa-solid fa-copyright"></i>
+    </div>
+    <div class="copy-copyright-info flex-center tooltip" data-tooltip-content="復製版權信息" data-tooltip-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Vue/">Vue</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2024/01/28/research-progress-20240128/"
+                                   title="最新科研進展"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">最新科研進展</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2024/01/23/vue3-2/"
+                                   title="[Vue 3] 第二課 Vue組件精通課"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">[Vue 3] 第二課 Vue組件精通課</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%96%8B%E5%A7%8B%E4%B9%8B%E5%89%8D"><span class="nav-text">開始之前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-Router"><span class="nav-text">Vue Router</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-Router%E7%9A%84%E5%AE%89%E8%A3%9D%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-text">Vue Router的安裝和基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E5%B5%8C%E5%A5%97"><span class="nav-text">路由嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8B%95%E6%85%8B%E8%B7%AF%E7%94%B1%E5%8C%B9%E9%85%8D"><span class="nav-text">動態路由匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B7%A8%E7%A8%8B%E5%BC%8F%E5%B0%8E%E8%88%AA"><span class="nav-text">編程式導航</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8E%E8%88%AA%E5%AE%88%E8%A1%9B"><span class="nav-text">導航守衛</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Axios"><span class="nav-text">Axios</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2023</span>&nbsp;-&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Kynix Chan</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;框架&nbsp;&&nbsp;主題&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜尋..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%96%8B%E5%A7%8B%E4%B9%8B%E5%89%8D"><span class="nav-text">開始之前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-Router"><span class="nav-text">Vue Router</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-Router%E7%9A%84%E5%AE%89%E8%A3%9D%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-text">Vue Router的安裝和基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E5%B5%8C%E5%A5%97"><span class="nav-text">路由嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8B%95%E6%85%8B%E8%B7%AF%E7%94%B1%E5%8C%B9%E9%85%8D"><span class="nav-text">動態路由匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B7%A8%E7%A8%8B%E5%BC%8F%E5%B0%8E%E8%88%AA"><span class="nav-text">編程式導航</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8E%E8%88%AA%E5%AE%88%E8%A1%9B"><span class="nav-text">導航守衛</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Axios"><span class="nav-text">Axios</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="pjax">
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+            
+<script src="/js/post/copyright-info.js"></script>
+
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

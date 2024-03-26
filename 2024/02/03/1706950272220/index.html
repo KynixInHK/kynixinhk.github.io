@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="陳叔叔的部落格">
+    <meta name="author" content="Kynix Chan">
+    
+    <title>
+        
+            [Linux] 認識Linux作業系統 |
+        
+        陳叔叔的部落格
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/favicon.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-TW","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#5352ed","title":"陳叔叔的部落格","author":"Kynix Chan","avatar":"/images/avatar.png","logo":null,"favicon":"/images/favicon.svg"},"menu":{"歸檔":"/archives","標籤":"/tags","類別":"/categories","關於我":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"追尋所愛的生活和世界。","hitokoto":false},"social_contact":{"enable":true,"links":{"github":null,"x-twitter":"https://twitter.com/kynixtw","instagram":"https://www.instagram.com/kynixtw/","facebook":"https://www.facebook.com/profile.php?id=100084690546631","email":"kynix@kynix.tw"}},"scroll":{"progress_bar":true,"percent":true,"hide_header":true},"home":{"category":true,"tag":true,"announcement":null},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":true,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"since":2023,"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":false,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":["/css/style.css"]},"root":"","source_data":{},"version":"4.1.0"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"復製代碼","copied":"已復製","fold":"折疊代碼塊","folded":"已折疊"}
+    KEEP.language_copy_copyright = {"copy":"復製版權信息","copied":"已復製","title":"原文標題","author":"原文作者","link":"原文連結"}
+  </script>
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+            <a class="site-name border-box" href="/">
+               陳叔叔的部落格
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                
+                                歸檔
+                            </a>
+                        </li>
+                    
+                        
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                
+                                標籤
+                            </a>
+                        </li>
+                    
+                        
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                
+                                類別
+                            </a>
+                        </li>
+                    
+                        
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                
+                                關於我
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives"
+                    >歸檔</a>
+                </li>
+            
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags"
+                    >標籤</a>
+                </li>
+            
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories"
+                    >類別</a>
+                </li>
+            
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about"
+                    >關於我</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        [Linux] 認識Linux作業系統
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.png">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Kynix Chan</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2024-02-03 16:51:28</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Mon Mar 25 2024 03:44:59 GMT+0000">2024-03-25 11:44:59</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E6%8A%80%E8%A1%93%E6%96%87%E7%AB%A0/">技術文章</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Linux/">Linux</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1/">作業系統</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="e0fc5bcf3ad2758b60731aec8e6be2af5658caf66cc2da74979dc72ee8492c39">54303b4a64ecead7700bbde3467adaf4a588b6b770fda24acb8abe7f99bc0ab7ceec9570cb3830ea63058ddbea527159702d7fa5b3d909261f4b93caf6c39f70de48b3370d50d39a5667abd990f745afbc35dbd528d2ce1dc6268ccef040603f2b15751ca597326036f1fafd9b08f8a7edbb7d11338d1eae243ea974928f3e4071dec1ccfec79e5e0a0e803340f524b54e9b359eb3df5464d1db81137a3cf5f11db10c401e31598fa44c71b6e7a671cd901cfa4bb433986e1430ff27d38a0b411aba3b6801854466241cc62b65ec2fe1028ad343730ff295976ffc824fca9fe5655926e557df56e365d90783ffa428039bec30aea1b5e3671d0cd9cb8be09563a4036ad3076b7f63346c99ac7c91a14425bd36b2e8b6a4fa4cc7c567bc2103b4ef8e8ba648339fd56bc9f3cb2746d3355a8a1dc0edb03067842299f948d1fd446139b638886785757ee391f91717d7f63a77c2255f3701869be0c461f3d916fc1e51fc90023632116fd2f6db08bdd522c365b1d46d6e7306968ce4dfc9d28a49e8e24f0077ac3979c64f472cdc1da40ce44d1d43b0b9012953ca9e9d1e16c6357ff22085b0839f0cf17c5a4cc9932faeed8d8f65e75e0e6fd10091bb4a5f3753e7ab2aad8b50336efe2d7c4b0b883165c7575af4c571416761bacccceb46ff43e23d49279ff7f8ee10ce70e322e8f06d23e18917b54ea0dc8fb0a7a83e7b7a8cd68296aa6e70d3d43a805b6b69b01987e19f3fee2c9681c6f5a234786989e414b928cf54d87b881809bef6976779c3df89b7cf7507c1a782dfc55ef2a683416dcfbfaff83913acaf5af9b3d9bf73524cbaaeeb19eda80041285be860120dd6b9b1ad87052fe7058da8c12aee8d79c8d08fa1e91607cc55c26dfdcc801b10d6d5f65d2ed47dd87c8a6ca95fe48619a2b90994f6986a52d5333ad9591b80176319fd3eb38aade9dfef42a2c1b46c94102107f796f8635f5dd73c1d41b33fe08718d9bfe34b9c1c14aa3339f7e500b83223b6c02bb043b796bbbf15b6e11281708a4e3abaa6eff22dbc5c6caeaa818d10abbfe3c65f901b913c8a618d6380123c6f5f7931ac1fa9b99ccdb47c731a6896eba690dd9fece70a9a228190757aff6289988ae8ed40be9adc484c6153dd136a0ba87a49972c668b98d97cf2146c99c8af43b7cd7a7be33fada083876d2eddad1c0840fe371d9d5ea6774ba28cdf15d6507440abe1a8fc82986194cc7bccf3c14f649c5ee58ed3c1a3c6e50e90f4e24232db8cf7b10fc7f992892c2ba55cdbb71f38bac2e00d9740e3baaff5498efb3327153d0a973708b4c85b418daf593cf1f3864610a70921bd5e035808333405d63a31ea8fa0f5500699ed4079ac263e7903eb7fa3d4b516061e6c62e986a94c74c0936f273a1ca3d41056faf5fba337aa48cdceaa47cfcc5523d4111d7bd30f71fcd71b1b0b9273969d37606f032eb87685aff8f2f72851e346f86012ea66ad2f53eda570d0045d009b494212661000ca76a6b7971c91fc0a67f9257446f68c1621eb9dd5e28e79357b6699fb5c88f43173f5f100e412c0ad1d8c093be9cf8b2708c8ac3a7cc6c1499d98a54296fd99e8fe9d3a002bad0095c7957c7b8ca728f9dfec85c76d21e8fa9f698b057b8d2fb526d003df5827183c60efd315aa55b9d3f34b8c484b6a9f218f54f26acf20cd7fc2ce64ad204353d288b0fdd05b67136ef8c79286f4361b0911b7cd4b5fb189445d02db446756a949ccf06a919d180ba4b5972a3ef7d5fdaf025f57689e99610c3be3c5ec19d24ee134cdd6359bd4640e870978ff0d1d37216580e1c5667d137bd8e6b9c9f8de8674ff9708856c38e2f5770ad87b65ccef49da2278b46cc18ca39f110a3ae563871d8ad0580df5a8a639a6063ce713264d6af7b864706622a8384a1cdaaf7aa3c6a5a5674f1936ebe30a841f8312374fe4afa7d7ccf715bc54cc522d12f623eeb70a1f63df03aa738ae520bb1763f7cf7acb42792bda0c43a100ab52db59ff777dea72e04e1ab5fe63055c22a290ec9d9a9d632bdbabfcb879277fa10dc3eaa3cbfa6d1208141c1b5d05047aabae98a175c293849a2736edcc4dbd152488b3f0ae3325a2b724afec7699a340429eaf633653d6b097008ecd304fffc34d48bee1a6b71e8ca843554d30913472c65e3c322b7af8f1e15bf64cf91c85d0bdbff5e3c9d274f77df54f0dedbe477cd6138195828b5839549296d989d979a490e81e3da6ff716aa70ba6c4c1576ea47fa7a4019093c31e3204b62062f36ba1efa37f64851dff94e8d58a621a8892c1b4ae28d3a3cdd9411e84d1ce4b800eda5825bbd7c5c9adfbb8ad0d1326bd1a0ed2f924e19d697df9f37f62c9b53c7ca28c3cece0b350a56569c22978d284cf28f4ce0b40998106b49d3bd6225b8b978b14ef5e3e36986dcf7f1a37142e1503a5a3695e1d1d58df1e1b2ab5c0efba45602986cd3439c2898d263d0fa084d4a9a730566044994ead33bd039b242c2204cb7f707a12b87e7d4e43c6e4cb482cb93d3d9f67dfc7e917adf9508099ea3af45b77a083bbd2b5fc622a5825b460c1d1cbc118ca5386a27d26ceb53e8139a3d6c350d7d9471b9c33139ca0464326a8a1c0ba7cd0e4a5b91f310134e2fbb6ee26b70ca64e7363fa38e592eb02c7daa838906481d22cef8ba0cbcd95e03a774ea6d205c2b6b556b13a0a1c6be2846d0843f56a36a3bdb58f3beb713eefd27ab94bf61513906b05c8b44286a63d84748bbd91bc74b9a7d4850585f7145a82a8af99fea819f1c2bb6e627beaeaf95d8ec0725b7154afc49907654ee29ccd33ddad68829143097f2b1be7819d62994885453b36f7263efa050531fdeb617a22dd2e00b75c7dde12909fa10cfb8e4a7064f4a27c22fdf4077b17ae97e0b08d4cbab97fbc11dbb5a01db322e494ef5e86dbb7f3de7b28ce6a96ceb90adef987680875a95f52f895f9751a4b6856770a5057f0dca753b69564813ea3e198bff03520708258e42c5ec5fc05222f019ab6c1fef2b6a88ef94eae98207652025343a0320317c4e3a1717f08404395d1aa53422e635fc7a8e13e9087c170beb95c53497ffa6fa688d4b297908199157391ba719046bd34cab7750235fc77332c48c266bbedfe2aa750bc8d0af1e93f7e7b7327fcddd0fb630ffe25c3a1bbd72bfa81fafcc5253a379e3ef0fe3f64d3a8e25d85501b3bd6486d6855258090574f0f581b14df7e3b62aeba02b0fa08e73db9abd6354f9bed186fcc8e7526d9b532a8a33158a5d3a8e3b346e85419992a8cd8a67f095f65f50f8dd13ab04dd6809c843175d6f4c1d47c30dd1d6e1ac0e31033e16d6b5b0f29dfbd1d26c2f24f9adfba7a6de3c2630126f2111d93960fe4bffaec2d27a5092570f9028923f49e794ed856aa04082497a50353c0890924ef56773b4f4e5e81b15c6136e0b2a094da83b32fee8ad2a44041567e59c4d8ee28dc11f5b18cb1885769d3c506942b16fa4fb8275fde4452ff0d206871c5c6223f73fbe167aad936ec4e5176c55c0d9d6c5d2167945b35e287bd222820722a7ea8b27dcd5d764571cb97a9f226a046d414448b159e07ba236500f03b726bf61e754d44fb16fce13b87f3cee271e02832e7bd35f70c1c99366963ed17d0b6cffa83bef7a001ce7f7440ea9b9848f8c8bd0c1f803c588acc876da5b8a185fbfd7098bc9cf3cff478e1ae383ac5f3d2935a4c210529c74362b8de1c2a60cfbfa8ce9e03cab8f3c3e61963e8cbca53c07cd098d001fc182296df357ce369c0194ffd638a72213bb108d98e4908effc17b4818527fa4032a9bca7770cf76ed82ddbe07842acaca66ac3a7bd8b0c3ba47b94a9c1cb6a5a9a96502fe100705d73c21445ee3d8e59bb44b386685680ec58a6a2fe355241fce4ad845344a2dfa0577b25ac45a1a3158a58d88da54c55c11af59af0cd23b369daf115816c5c7cad4e12ecc9c8eb17d03929517ac468117d5ce15560c494a35ddbf4e6394fd9dab12bd5292473ec80446284c10d95eead2da3bfbd3278fb2367159ee06de4796c0b600ce1fbdb3c9ada332c9dc882c15f126ce2da110b1553a9d354424792fd372488f728e6358d1ef543ed55d90c446f01c1f1dde347249b801bfa9698cbba20fc59edec5f22ed81b90724f2e877dda5fc14d39e4bcaf7beef645a19b51e360e19b13f34a942589c01405d9cd2587bf5d6c3e6647931d9db97d69e4526fc86daaad3f885d60223dae293979a740d219bb86c5a9cc25e6ba5d9eaaf6a5cca573ecf86e68a6c5ebd30f233f0b4e1b15b3eaddb0de1ae4e0bce0dffa52186becc834334e330da19e89b5fd356c9f6892fa2ffc41bcbc922179c32523060c91aeb5bd21b03819783e6fd7e354c784fd7312880f6849797557bc4840baff256c35b1dc7e8b0e0c9db7a6fb2254c689344350a70b9711fcd9277e52e9abd83e964d4480a32440f67d950117cbd60d296cfad52bff8a9081d73c19de82f3b1759255c40ebe7f9106fed627a6858637b4f2df977e0a56957db0501aba2873e6731cc3f42aa91f8941e4d522325654e4f3b875a5e958ab86bfd4256862e4e6996474103e2266631fc7e07b6da998c8ce2762304d5cbaac292654838bafd191d304fa575e02d14b048d7ca4164f1dea67900af729f0fcb1370f64ec0e4e45c923dcb17b360e901d36299f38c29a9e40f4324132d91464e8b3692a7be171606da41afcffb4a01e4b9a570f71ea141a995bcce96a9f84854254b07b226ba6a66185ef6a19cdc4f22b5054fea6b4513548683b635063f19c1a375fa79399e04b9c7fd7022150b6a8b95aa8bd3b1c6c3b759f8a59379972722cb57417b4301a5a27285bd9d2192d1fda0920b30b454e44a329b7683e44f2d540b7f8837e6a4d8161593360557a23741c5c32c7b5bfc232158ab307a2d378cb9121fe0c40f354f34c001b96692bbae095e34e59953fa9de06280295c441d4da02bac97795628aef44a8c992d8dad32f99c4e9b6505e4edfce04baea5c1f63be4c3b5ec5ccd517a9f4c8d8ab4e246690f14097a348e9ad348a5b51b60c06cbf04ce8dd0758843b7e89b55a776ea39469fd61c653f52d542e3842a4ff1eeeefac490a034a194ca1ce1d046b379745c42dca6092759ded46486673ff5d0b58c1f836991d002594f38a616de9c4cbd883b27546788eda0f9c12424907245c63b33b32365756a071ed158487d74a250daa2b93502b147e588f3d34ce8cfcf1190ade84499f4afb7812e3416406b8ea7ef7fc8df80765a657b3039444e02d60c34991f98428f338f8901ff206ce83c306d111dbe3bdad49655d957446b3881b65600b088eb6458589951136e105463f0ed3d98ee3bbda60a9f89cb9744ee06d0297391ecfa7636745ee38d917402dd4c9adc787d1886e1f83646efc03f3581f7c8e1efb91f17a099bc0444cef7eeabc979d24ab13af4f94439866de528f54383460fb1b217efef37f5d3a446c1fa7a441c8009878a32a92857c418a6e83c976c9aea3f09d3a360c409f23e4984168a6bee94acd0c90ea9e9c80608df51fbf27731cd6369ad51e2af65e453334b33fbeaab4f0b3d1e54e131278259165c1fdad5a97bd9e8c2019e6e0cf6d95011fb667e4ffbe76873083cf3b4b98837e09f822b52482d86b0fcebd511143fe3bb3aff382eb1ce18a802c6f8f8587935b5a57963b91d00c9a62f63c132e046a81827837a0349d499651847a325c331462ac3939931f7fbdedf0eb14c0cb86a0fc2b8ad2d2c17fac2c598b5afb923f9c8664eff0ebe10e417ca0d1eae753ea57a0ee5a08a1579baeec77100dcbc23611a49113482353d8877d148595dd1b578ad82483ab27e0053f6942b3fa660c77ba56212bdb47ea1490b58c530d782c036feb76b64760b8daba505056ea56671e388a78e7cbd62894c593eede78bad44ea2d6066140e8c402f49c8459b9dfa6d66c6c54f4823825615154d6cd301829dec48f60244e1fa9f278bb4861b47cb4f29b5d0041de326e364d7559f17491a856d7c5ce66e1330d8b134948f99802e5560bf781d603529faf5d12ed991b9abf87618c5b6553febe702c76d35da1e16cec9c52540f7a90682505e7e1f3d64814b9e88fbcd52a86867d648b6a106df32823d89dd2c474bf9934147fb3ab656bd241fb7ca43728ec40574c95d1c255e30bb98ad008ae6a81fb2bb77c49530b582df1fb75d819a3c49c06f729411fd9917d9815f40d9f1c2a7c80f3645a97a7e03c66a5d2780ac01008f626c1bde0811ffeaa5a2d51942376a1a778b185215fd1ba5c80bf4fbe37498123d4820d4881acc6776b3d0beecca6000a0b6a1f64d7002d2bbb6271123897e1e04f762dfc1d1fe567d396bfc08480d5bcdcf04460ca9fa3b5e24504323971d7da4dd1c3d6357eb79feb4b6c3dd80d2faf79e2f5ac8af6f9bac2225ffe3f30b9309a2b3674b3aec0851d5003f820b19041e14de0f3718d3e78b1e23e7564bf09a66a0cd55af065144068e258ec1d90b810b065e733c1c755b38a3197c2d9353b14ff162fd4642d9649ecad74fd63e0e8660f89ba9a6d28293bbdcd27caf4842194a01b1fe7f1a975f9ed466d79164513242394fc5d8d8e110bee6e8670865a4eb86e1077a45a9b5063c87c77114fb007a07354d68d6f20c3d351512030f85223e10057332c4141114907129897fc7f45d7d712231d7fa11508c5bf525149f0e807caf6d5bac61cc07bd21700112f6fd610f9bfcc892032889b069feda8815203b83f20f9da844c244d429349053d8325cd9d42e13f4b39455636095338e92e0697931b55b13f9bc0f3c8499894ed0521f00f7473194012bed5eb5725c2c9b9ca1aa1864de340451da18a61277bfe7b3fbf7338b42a02609aa83228c80e89f441e63361efb1167f961c81a20c3162af71ac8d3d3780ef4158a56c834b1db96b4c539fea50aa628728ee977fc60193a92115aadeead54a8260fda228aeb9178dc3670a8a882df3e0f8b5767df9d560e96a20de7558b3f63d05bdddda116cb9d9396bbb99dd3f5ffaac0e63f7d6e5914648a694fe3aecf534148946c981183ddf4febbaad15b930f1e47aa38dbd3e8a19860f23a55ed95260001e5e4b86f3366cc1b2d92c11a02927ce7a28c5f2d1d6830fba3f7298f75e65ba3c20822265fbf3ce8af97d647213d33a34de868d2ace92c4107c3bea5aec7c531e83853152400d63547e89fff4b80f3cfcba1656f7e531a956ac5c649c1a79a87d3a195b1be2aac4439c5649d92adca501b1381f98707b49565db29b91ce150a427ec6009fa4eeba960556b2494f8390dcdbb7567689f429a0709243d2f59aecbb34e9f787ed534eb70ce722688f9a47ebe840211f3a9fddcb994561f8ff711c98adf690c958c1d1f4574aa63c888bb6c0a2d969af18a59cd44f3b67136b33c53f191151fb3c3a18e153970ea09f52f0822a4463460e8efd2288e104808b764c793b64e50a54a06cf29c17762a4cef6800eacc8909fd61da48def7c654031f643d88c7c38a3f19dc4a79fc60e002617044cdda975703d7bf72537f40332a1109375f1ba19170861a9a8eeddbf0daf88acc349d5c2c6eac55173c42fad122d2b3db738d7508179f4d1151d8df74536e6fe71506bb6b599b24597c1d4137dbf33131dffa984127a6c67adb61fdf07e4b9ff7f89f0b90f300ea746999bf2a853dfb0e550714838f9b2099fff13acccd40a5141c881634dd7cbf423ce55cd661a9a25c1bec224d6acb7b8d1ffaed170173edd5a2a40468dcc5985cf8e24c5927d8502c919f964dce0310848700f2e0583bdd8f95c50709d6c75a643ee933a6bbd790e64b0286a7c6c32b2cf888d3b582b409616af8a9e94b2d86ed1856f606274af6fc5364ebd507c43b6028437f13e9de815404f9c7ed0cc3d34007e8a2c2d85e42b10b3d7961b7ca6259ab359918ef044e621ace13119be0988d5ce8a88416363e3ddcc3d6acdfb5f139f0a5f0c7fed49b7160351332ddc1961828c4569f42b868118217077620530fe6db575d7eafa7af452d9bf96c12746519b440d270793f68b1eb99328b17dfd09dd5f811f0e61efe4462c3b7a87541404e70234de08a04da3ac7321d771933ecf88faa80c3abc73f5c62e0aaff1ad8397f4e523e73b22c849a28a0f9fc1377c1f049b474bc2744ec10229958affda52b8e4e2f8f081e04ca4c1d340c84f2498542a803e3df795156166542250a9b85709e65d9def97f91e02896fb750ae005b0094778cd1c09d926755ee319621765aba8933cd8631be21c2e7ed9515788e2d22e2307ddd7674605869d6e4c4b6702aadfc567ceb52c137c41b658cf902ba18bccf34838284b2eb6dae4d89f15d1e41c5856e31dfd87c0987adae05521e5cc5a2b3f70cf4158a4301e1079e4a9ac750b20f1eaccdf308ad4bf230cf365a1d689e51669cd5d1fd1dabe3af931d9b60ee3287c7df1d174a8c7f99ee2fbdbf96470e4ad30e74296567e2e8b49b1aa5eeafd8ba42268123c2028ceef0699c5a9b4e73a7144f7dc3080cb185406a7f8c1becfb965f7b4044f4b812a5f97a6f81fa05e0565c7ad39232d78990c6bdd52d7ab50cecb5eb02523f8a1755b7a1a9e6bdde5038fce1bdcede9e65baef9582726d02350cc904fa3c45c33bb249185681c436c245a7a16f522b6a462d2f935edc5dabcdec525a8543c7a0de0ca4db1199cc6bc55e51eb3afee59a18a8846b18</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+                </div>
+                
+                        
+<div class="post-copyright-info-container border-box">
+    <div class="copyright-info-content border-box">
+        <div class="copyright-info-top border-box">
+            <div class="copyright-post-title border-box text-ellipsis">
+                [Linux] 認識Linux作業系統
+            </div>
+
+            <div class="copyright-post-link border-box text-ellipsis">
+                2024/02/03/1706950272220/
+            </div>
+        </div>
+
+        <div class="copyright-info-bottom border-box">
+            <div class="copyright-post-author bottom-item">
+                <div class="type">
+                    作者
+                </div>
+                <div class="content">Kynix Chan</div>
+            </div>
+
+            <div class="post-time bottom-item">
+                <div class="type">
+                    發布于
+                </div>
+                <div class="content">2024-02-03 16:51</div>
+            </div>
+
+
+            <div class="post-license bottom-item">
+                <div class="type">
+                    許可
+                </div>
+                <div class="content tooltip" data-tooltip-content="CC BY-NC-SA 4.0">
+                    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant" target="_blank">
+                        
+                            <i class="fa-brands fa-creative-commons"></i>
+                            <i class="fa-brands fa-creative-commons-by"></i>
+                            <i class="fa-brands fa-creative-commons-nc"></i>
+                            <i class="fa-brands fa-creative-commons-sa"></i>
+                        
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <i class="copyright-bg fa-solid fa-copyright"></i>
+    </div>
+    <div class="copy-copyright-info flex-center tooltip" data-tooltip-content="復製版權信息" data-tooltip-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Linux/">Linux</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1/">作業系統</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2024/02/08/1707380493867/"
+                                   title="[Linux折騰] Intel Xe Graphics架構內顯在Archlinux上開啓SR-IOV虛擬化的過程"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">[Linux折騰] Intel Xe Graphics架構內顯在Archlinux上開啓SR-IOV虛擬化的過程</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2024/02/02/project-china-map/"
+                                   title="[项目文档（简中版）] 灯火耀中国"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">[项目文档（简中版）] 灯火耀中国</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2023</span>&nbsp;-&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Kynix Chan</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;框架&nbsp;&&nbsp;主題&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜尋..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="pjax">
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+            
+<script src="/js/post/copyright-info.js"></script>
+
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
